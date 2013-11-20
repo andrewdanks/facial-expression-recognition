@@ -1,14 +1,11 @@
 import scipy.io
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
-import matplotlib.pyplot as plt
-plt.ion()
-
 
 def load_mat(file_name):
     return scipy.io.loadmat(file_name)
 
-def make_submission_file(pred):
+def make_submission_file(pred, file_name='submission.csv'):
     len_pred = len(pred)
     lines = ['Id,Prediction']
     for i in range(1253):
@@ -17,7 +14,7 @@ def make_submission_file(pred):
         else:
             prediction = pred[i]
         lines.append('%s,%s' % (str(i + 1), prediction))
-    with open('submission.csv', 'w+') as fp:
+    with open(file_name, 'w+') as fp:
         fp.write("\n".join(lines))
 
 def show_metrics(actual, pred):
@@ -38,12 +35,24 @@ def load_valid():
     val_images = val_images.reshape(img_size**2, num_rows).T
     return val_images
 
-def show_image(means):
-  """Show the cluster centers as images."""
-  plt.figure(1)
-  plt.clf()
-  for i in xrange(means.shape[1]):
-    plt.subplot(1, means.shape[1], i+1)
-    plt.imshow(means[:, i].reshape(32, 32).T, cmap=plt.cm.gray)
-  plt.draw()
-  raw_input('Press Enter.')
+def load_unlabelled():
+    unlabeled_images = load_mat('data/unlabeled_images.mat')['unlabeled_images']
+    img_size, _, num_rows = unlabeled_images.shape
+    unlabeled_images = unlabeled_images.reshape(img_size**2, num_rows).T
+    return unlabeled_images
+
+def generate_arff(X, y, file_name='data'):
+    lines = ['@RELATION fr']
+    num_data, num_dim = X.shape
+    for i in range(num_dim):
+        lines.append('@ATTRIBUTE d%s NUMERIC' % i)
+    lines.append('@ATTRIBUTE class {1,2,3,4,5,6,7}')
+    lines.append('@DATA')
+    for i in range(num_data):
+        x = []
+        for j in range(num_dim):
+            x.append(X[i][j])
+        x.append(y[i])
+        lines.append(','.join(map(str, x)))
+    with open(file_name + '.arff', 'w+') as fp:
+        fp.write("\n".join(lines))
