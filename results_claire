@@ -1,0 +1,47 @@
+KNN:
+K = 5
+    precision = 0.52, recall = 0.51, f1-score = 0.49
+
+
+MOG:
+n_components = 5:
+    precision = 0.42, recall = 0.41, f1-score = 0.41
+n_components = 10:
+    precision = 0.51, recall = 0.50, f1-score = 0.51
+n_components = 15:
+    precision = 0.53, recall = 0.54, f1-score = 0.53
+n_components = 25:
+    precision = 0.53, recall = 0.52, f1-score = 0.52
+n_components = 50:
+    precision = 0.49, recall = 0.49, f1-score = 0.47
+n_components = 100:
+    precision = 0.47, recall = 0.49, f1-score = 0.45
+* None-'diag' covariance type performed poorly.
+
+PCA+MOG, no unlabelled:
+n_components = 5:
+    precision = 0.60, recall = 0.58, f1-score = 0.59
+n_components = 10:
+    precision = 0.63, recall = 0.60, f1-score = 0.61
+n_components = 15:
+    precision = 0.61, recall = 0.58, f1-score = 0.59
+n_components = 25:
+    precision = 0.63, recall = 0.59, f1-score = 0.60
+n_components = 50:
+    precision = 0.58, recall = 0.55, f1-score = 0.56
+n_components = 100:
+    precision = 0.55, recall = 0.49, f1-score = 0.49
+
+PCA+MOG, half of unlabelled:
+n_components = 5:
+    precision = 0.60, recall = 0.58, f1-score = 0.59
+n_components = 10:
+    precision = 0.64, recall = 0.60, f1-score = 0.61
+n_components = 15:
+    precision = 0.62, recall = 0.60, f1-score = 0.61
+n_components = 25:
+    precision = 0.62, recall = 0.60, f1-score = 0.61
+n_components = 50:
+    precision = 0.62, recall = 0.59, f1-score = 0.59
+n_components = 100:
+    precision = 0.55, recall = 0.50, f1-score = 0.49
