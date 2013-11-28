@@ -32,8 +32,12 @@ def knn(X, y):
 # Run random forest method.
 def random_forest(X, y, V=None, n_estimators=100):
     clf = RandomForestClassifier(n_estimators=n_estimators, max_depth=None, min_samples_split=1, random_state=0)
-    clf.fit(X, y)
-    return clf.predict(V)
+    if V is not None:
+        clf.fit(X, y)
+        y_pred = clf.predict(V)
+        return y_pred
+    else:
+        print(cross_validation.cross_val_score(clf, X, y, cv=10))
 
 # Mixture of Gaussians.
 def mog(X, y, V, n_components = 25, cov_type = 'diag'):
