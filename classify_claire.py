@@ -149,26 +149,8 @@ def mog(X_train, X_test, y_train, n_components = 25, cov_type = 'diag'):
     
     for i in range(len(classifiers)):
         classifiers[i].fit(X_train[y_train == i + 1])
-        
-#        score_train.append(classifiers[i].score(X_train))
         score_test.append(classifiers[i].score(X_test))
         min_score = min(min(score_test[i]), min_score)
-        
-#    # Compute training error.
-#    y_train_pred = []
-#    for j in range(len(X_train)):
-#        max_score = min_score
-#        chosen_class = 0
-#        for i in range(len(classifiers)):
-#            if (score_train[i][j] > max_score):
-#                max_score = score_train[i][j]
-#                chosen_class = i + 1
-#        y_train_pred.append(chosen_class)
-#    
-#    print '*** train pred prob ***'
-#    show_metrics(y_train, y_train_pred)
-    
-    
     
     # Make prediction for X_test.
     y_pred = []
