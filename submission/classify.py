@@ -70,7 +70,7 @@ def mog(X, y, V, n_components = 25, cov_type = 'diag'):
     return y_pred
 
 # Run SVM, MOG, Random Forest and take majority class.
-def my_ensemble(X, y, V, y_test):
+def my_ensemble(X, y, V):
     y_pred = []
     votes = []
     
@@ -78,7 +78,7 @@ def my_ensemble(X, y, V, y_test):
     votes.append(mog(X, y, V, 10))
     votes.append(random_forest(X, y, V))
     
-    for i in range(len(X_test)):
+    for i in range(len(V)):
         if votes[1][i] == votes[2][i]:
             y_pred.append(votes[1][i])
         else:
