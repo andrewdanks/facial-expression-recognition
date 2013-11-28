@@ -18,6 +18,10 @@ def load_test():
 def load_unlabelled():
     return fix_dimensions(load_mat('unlabeled_images.mat')['unlabeled_images'])
 
+def fix_dimensions(images):
+    img_size, _, num_rows = images.shape
+    return images.reshape(img_size**2, num_rows).T
+
 def make_submission_file(pred, file_name='submission.csv'):
     len_pred = len(pred)
     lines = ['Id,Prediction']
