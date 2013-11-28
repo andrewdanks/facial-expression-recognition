@@ -1,5 +1,8 @@
 from sklearn.decomposition import ProbabilisticPCA
 from sklearn.svm import SVC
+from sklearn.mixture import GMM
+from sklearn.grid_search import GridSearchCV
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.decomposition import FastICA
 from utils import *
 import numpy as np
@@ -55,7 +58,7 @@ def mog(X, y, V, n_components = 25, cov_type = 'diag'):
     
     # Make prediction.
     y_pred = []
-    for j in range(len(X)):
+    for j in range(len(V)):
         max_score = min_score
         chosen_class = 0
         for i in range(len(classifiers)):
