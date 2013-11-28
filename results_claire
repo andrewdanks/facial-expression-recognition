@@ -2,12 +2,15 @@ KNN:
 K = 5
     0.49
 
+PCA + KNN:
+    0.53
+
 
 MOG, cov_type = diag, n_iter = 10:
 n_components    f1-score
 5               0.41
 10              0.51
-15              0.53
+15              0.53*
 25              0.52
 50              0.47
 100             0.45
@@ -108,3 +111,10 @@ pca_components  no unlabelled               half of unlabelled
 150             0.75,0.72,0.76,0.70,0.73    0.75,0.75,0.77,0.73,0.74
 250             0.73,0.73,0.73,0.70,0.71    0.76,0.74,0.74,0.72,0.74
 *** Validation Error for pca_components=100: 0.72488
+
+PCA+SVM
+kernel
+linear      0.67
+polynomial  0.17
+Gaussian    0.74
+sigmoid     0.13

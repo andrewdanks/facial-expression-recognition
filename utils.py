@@ -1,6 +1,6 @@
 import scipy.io
 from sklearn.metrics import classification_report
-from sklearn.metrics import confusion_matrix
+from sklearn.metrics import confusion_matrix, f1_score
 
 def load_mat(file_name):
     return scipy.io.loadmat(file_name)
@@ -34,6 +34,12 @@ def load_valid():
     img_size, _, num_rows = val_images.shape
     val_images = val_images.reshape(img_size**2, num_rows).T
     return val_images
+    
+def load_test():
+    test_images = load_mat('data/test_images.mat')['test_images']
+    img_size, _, num_rows = test_images.shape
+    test_images = test_images.reshape(img_size**2, num_rows).T
+    return test_images
 
 def load_unlabelled():
     unlabeled_images = load_mat('data/unlabeled_images.mat')['unlabeled_images']
